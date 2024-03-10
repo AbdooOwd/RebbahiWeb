@@ -6,8 +6,7 @@ export default async function handler(req, res) {
     const { title, content } = req.body;
 
     try {
-      // Create a unique identifier for each post (you can use a library like `uuid` for this)
-      const postId = generateUniqueId(); // Implement `generateUniqueId` according to your needs
+      const postId = title.lower().replace(' ', '-');
 
       // Define the path where the JSON file will be stored
       const filePath = path.join(process.cwd(), 'src/content/posts', `${postId}.json`);

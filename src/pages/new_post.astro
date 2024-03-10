@@ -60,5 +60,41 @@ import Layout from "../layouts/Layout.astro";
     }
 </style>
 
-<script src="../code/post_handling.ts"></script>
+<script>
+    const password = document.getElementById("password") as HTMLInputElement;
+    const password_btn = document.getElementById("password-btn") as HTMLButtonElement;
 
+    const account = document.getElementById("account-page") as HTMLDivElement;
+    const editor = document.getElementById("editor-page") as HTMLDivElement;
+
+    const error_boy = document.getElementById("error") as HTMLSpanElement;
+
+    const post_btn = document.getElementById("post-btn") as HTMLButtonElement;
+    const post_title = document.getElementById("title") as HTMLInputElement;
+    const post_content = document.getElementById("content") as HTMLTextAreaElement;
+
+    post_btn.addEventListener("click", function () {
+        console.log("Cannot save, still WIP");
+        alert('Cette fonctionnalité n\'est pas encore disponible!');
+        //savePost(post_title.value, post_content.value);
+    });
+
+    password_btn?.addEventListener("click", function () {
+        checkPassword(password?.value);
+    });
+
+    password.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkPassword(password?.value);
+        }
+    });
+
+    function checkPassword(lePass: string) {
+        if (lePass == "directeur") {
+            account.style.display = "none";
+            editor.style.display = "block";
+        } else {
+            error_boy.innerText = " Mauvais mot de passe!";
+        }
+    }
+</script>

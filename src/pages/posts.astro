@@ -3,5 +3,64 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Annonces">
-    
+    <div class="main">
+        <h1 style="text-decoration: underline;">Annonces</h1>
+        <div id="main-content"></div>
+        <a href="/new_post" class="new-post">Nouvelle annonce</a>
+    </div>
 </Layout>
+
+<style>
+    .main {
+        padding: 5vh 3vw;
+    }
+
+
+    .new-post {
+        position: fixed;
+        top: 84px;
+        right: 10px;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    
+    @media (max-width: 600px) {
+        .new-post {
+            top: 106px;
+        }
+    }
+</style>
+
+<script type="module">
+    async function fetchPosts() {
+        try {
+            const response = await fetch("/api/posts");
+            const data = await response.json();
+            return data.posts;
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+            return [];
+        }
+    }
+
+    async function renderPosts() {
+        const posts = await fetchPosts();
+
+        const postsContainer = document.getElementById("main-content");
+        postsContainer.innerHTML = "";
+
+        posts.forEach((post) => {
+            const postElement = document.createElement("div");
+            postElement.innerHTML = `<h2>${post.title}</h2><p>${post.content}</p>`;
+            postsContainer.appendChild(postElement);
+        });
+    }
+
+    // Initial rendering of posts
+    renderPosts();
+</script>

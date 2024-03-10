@@ -14,12 +14,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="editor" id="editor-page">
             <h2>Poster une annonce</h2>
             <form>
-                <input
-                    type="text"
-                    id="title"
-                    placeholder="Titre"
-                    required
-                />
+                <input type="text" id="title" placeholder="Titre" required />
                 <br />
                 <textarea
                     id="content"
@@ -65,64 +60,5 @@ import Layout from "../layouts/Layout.astro";
     }
 </style>
 
-<script>
-    const password = document.getElementById("password") as HTMLInputElement;
-    const password_btn = document.getElementById("password-btn");
+<script src="../code/post_handling.ts"></script>
 
-    const account = document.getElementById("account-page") as HTMLDivElement;
-    const editor = document.getElementById("editor-page") as HTMLDivElement;
-
-    const error_boy = document.getElementById("error") as HTMLSpanElement;
-
-    const post_btn = document.getElementById('post-btn') as HTMLButtonElement;
-    const post_title = document.getElementById("title") as HTMLInputElement;
-    const post_content = document.getElementById("content") as HTMLTextAreaElement;
-
-    post_btn.addEventListener('click', function() {
-        handleSubmit();
-    });
-
-    function handleSubmit() {
-        const title = post_title?.value;
-        const content = post_content?.value;
-
-        // Make the API call to store the post
-        fetch('/api/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, content }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response, for example, show a success message
-            console.log('Post submitted successfully:', data);
-            alert('Post submitted successfully!');
-        })
-        .catch(error => {
-            // Handle errors, for example, show an error message
-            console.error('Error submitting post:', error);
-            alert('Error submitting post. Please try again.');
-        });
-    };
-
-    password_btn?.addEventListener("click", function () {
-        checkPassword(password?.value);
-    });
-
-    password.addEventListener('keydown', function(event) {
-        if (event.key === "Enter") {
-            checkPassword(password?.value);
-        }
-    });
-
-    function checkPassword(lePass: string) {
-        if (lePass == "directeur") {
-            account.style.display = "none";
-            editor.style.display = "block";
-        } else {
-            error_boy.innerText = " Mauvais mot de passe!";
-        }
-    }
-</script>

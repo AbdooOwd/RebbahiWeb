@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { title, content } = req.body;
 
     try {
-      const postId = title.lower().replace(' ', '-');
+      const postId = title.toLowerCase().replace(/ /g, '-');
 
       // Define the path where the JSON file will be stored
       const filePath = path.join(process.cwd(), 'src/content/posts', `${postId}.json`);

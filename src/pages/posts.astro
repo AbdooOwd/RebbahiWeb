@@ -7,10 +7,21 @@ import Layout from "../layouts/Layout.astro";
         <h1 style="text-decoration: underline;">Annonces</h1>
         <div id="main-content"></div>
         <a href="/new_post" class="new-post">Nouvelle annonce</a>
+        <center>
+            <p id="wip">Le système d'annonce ne marche pas encore.<br/>Revenez une autre fois!</p>
+        </center>
     </div>
 </Layout>
 
 <style>
+    #wip {
+        font-weight: bolder;
+        font-size: 2rem;
+        background-color: #7e2020;
+        padding: 10vh 15vw;
+        border-radius: 10px;
+    }
+
     .main {
         padding: 5vh 3vw;
     }

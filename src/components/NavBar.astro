@@ -1,0 +1,47 @@
+---
+
+---
+
+<nav>
+    <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/posts">Annonces</a></li>
+        <li><a href="/about">À propos</a></li>
+    </ul>
+</nav>
+
+<style>
+    nav {
+        font-size: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Center children vertically */
+        width: 100%;
+        background-color: #242424;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+
+    nav li {
+        cursor: pointer;
+        margin: 0 2vw;
+        transition-duration: 0.35s;
+        min-width: 5%;
+        padding: 8px 6vw;
+        border-radius: 5px;
+    }
+
+    nav li:hover {
+        background-color: #3d3d3d;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #fff;
+    }
+</style>

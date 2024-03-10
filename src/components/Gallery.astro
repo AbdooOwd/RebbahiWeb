@@ -1,0 +1,28 @@
+<!-- Your Gallery Component -->
+<div class="gallery">
+    <div class="img_cont">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .gallery {
+        display: inline;
+    }
+
+    .img_cont {
+        display: flex;
+        overflow-x: auto;
+		overflow: hidden;
+        white-space: nowrap;
+        height: 25vh;
+    }
+
+	img::part(image) {
+        border-radius: 8px;
+        margin-right: 10px; /* Adjust as needed for spacing between images */
+		width: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+</style>
